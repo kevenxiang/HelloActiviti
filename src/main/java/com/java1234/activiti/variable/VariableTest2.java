@@ -82,7 +82,7 @@ public class VariableTest2 {
 	@Test
 	public void completeTask(){
 		processEngine.getTaskService()  //任务相关Service
-		.complete("62502");
+		.complete("77502");
 	}
 	
 	
@@ -93,7 +93,7 @@ public class VariableTest2 {
 	public void setVariableValues() {
 		
 		RuntimeService runtimeService = processEngine.getRuntimeService();  //任务service
-		String executionId="42504";
+		String executionId="70001";
 		runtimeService.setVariable(executionId, "days", 2);
 		runtimeService.setVariable(executionId, "date", new Date());
 		runtimeService.setVariable(executionId, "reason", "发烧");
@@ -113,7 +113,7 @@ public class VariableTest2 {
 	public void getVariableValues() {
 		
 		RuntimeService runtimeService = processEngine.getRuntimeService();  //任务service
-		String executionId="50002";
+		String executionId="90001";
 		Integer days = (Integer)runtimeService.getVariable(executionId, "days");
 		Date date = (Date)runtimeService.getVariable(executionId, "date");
 		String reason = (String)runtimeService.getVariable(executionId, "reason");
@@ -126,52 +126,7 @@ public class VariableTest2 {
 		System.out.println("请假对象:"+student.getId()+","+student.getName());
 	}
 	
-	/**
-	 * 设置流程变量数据
-	 */
-	@Test
-	public void setVariableValues2() {
-		
-		TaskService taskService = processEngine.getTaskService();  //任务service
-		String taskId="55004";
-		
-		Student student = new Student();
-		student.setId(1);
-		student.setName("张三");
-		
-		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("days", 2);
-		variables.put("date", new Date());
-		variables.put("reason", "发烧");
-		variables.put("student", student);
-		
-		taskService.setVariables(taskId, variables);
-		
-	}
 	
-	
-	/**
-	 * 获取流程变量数据
-	 */
-	@Test
-	public void getVariableValues2() {
-		
-		TaskService taskService = processEngine.getTaskService();  //任务service
-		String taskId="60002";
-		
-		Map<String, Object> variables = taskService.getVariables(taskId);
-		
-		Integer days = (Integer)variables.get("days");
-		Date date = (Date)variables.get("date");
-		String reason = (String)variables.get("reason");
-		
-		Student student = (Student)variables.get("student");  //支持序列化对象
-		
-		System.out.println("请假天数:"+days);
-		System.out.println("请假日期:"+date);
-		System.out.println("请假原因:"+reason);
-		System.out.println("请假对象:"+student.getId()+","+student.getName());
-	}
 	
 
 }
